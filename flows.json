@@ -7,48 +7,65 @@
         "info": ""
     },
     {
-        "id": "b2e708a3.48e628",
-        "type": "inject",
+        "id": "b6676317.388cb",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "55dd0376.f7c64c",
+        "type": "http in",
         "z": "3af82246.3634ae",
         "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
         "x": 140,
-        "y": 190,
+        "y": 180,
         "wires": [
             [
-                "3d08cde.e306732"
+                "c656aba7.944288"
             ]
         ]
     },
     {
-        "id": "3d08cde.e306732",
-        "type": "debug",
+        "id": "c2380ca8.0463",
+        "type": "http response",
         "z": "3af82246.3634ae",
         "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 310,
-        "y": 240,
+        "statusCode": "",
+        "headers": {},
+        "x": 480,
+        "y": 180,
         "wires": []
+    },
+    {
+        "id": "c656aba7.944288",
+        "type": "change",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"text\":\"Hello\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "c2380ca8.0463"
+            ]
+        ]
     }
 ]
