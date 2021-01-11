@@ -14,6 +14,44 @@
         "info": ""
     },
     {
+        "id": "d2a17e7.00b668",
+        "type": "mqtt-broker",
+        "name": "myBrokerConfig",
+        "broker": "mqttBroker",
+        "port": "8883",
+        "tls": "9ec473ef.e0678",
+        "clientid": "nodered",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "9ec473ef.e0678",
+        "type": "tls-config",
+        "name": "myTLSconfig",
+        "cert": "",
+        "key": "",
+        "ca": "/mosquitto/certs/mqtt_ca.crt",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "mqttBroker",
+        "verifyservercert": true
+    },
+    {
         "id": "55dd0376.f7c64c",
         "type": "http in",
         "z": "3af82246.3634ae",
@@ -22,8 +60,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 140,
-        "y": 180,
+        "x": 180,
+        "y": 220,
         "wires": [
             [
                 "c656aba7.944288"
@@ -37,8 +75,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 480,
-        "y": 180,
+        "x": 520,
+        "y": 220,
         "wires": []
     },
     {
@@ -60,8 +98,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 310,
-        "y": 180,
+        "x": 350,
+        "y": 220,
         "wires": [
             [
                 "c2380ca8.0463"
@@ -87,8 +125,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "payload": "${WWW}",
+        "payloadType": "str",
         "x": 110,
         "y": 80,
         "wires": [
@@ -111,6 +149,98 @@
         "statusType": "auto",
         "x": 280,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8381a5c3.3cbf9",
+        "type": "mqtt in",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "d2a17e7.00b668",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "ebab6856.8901c"
+            ]
+        ]
+    },
+    {
+        "id": "ebab6856.8901c",
+        "type": "debug",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 490,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "92d9d4a9.e5cf4",
+        "type": "inject",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "fb7b0c12.eb2e48"
+            ]
+        ]
+    },
+    {
+        "id": "fb7b0c12.eb2e48",
+        "type": "change",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"time\" : $fromMillis($toMillis($now()),'[H]:[m]:[s]') }",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 380,
+        "wires": [
+            [
+                "d356084b.b81818"
+            ]
+        ]
+    },
+    {
+        "id": "d356084b.b81818",
+        "type": "mqtt out",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "topic": "time",
+        "qos": "",
+        "retain": "",
+        "broker": "d2a17e7.00b668",
+        "x": 490,
+        "y": 400,
         "wires": []
     }
 ]
