@@ -17,10 +17,10 @@
         "id": "d2a17e7.00b668",
         "type": "mqtt-broker",
         "name": "myBrokerConfig",
-        "broker": "${MQTT_HOST}",
-        "port": "${MQTT_PORT}",
+        "broker": "mqttBroker",
+        "port": "8883",
         "tls": "9ec473ef.e0678",
-        "clientid": "${MQTT_CLIENT_ID}",
+        "clientid": "nodered",
         "usetls": true,
         "compatmode": false,
         "keepalive": "60",
@@ -44,11 +44,11 @@
         "name": "myTLSconfig",
         "cert": "",
         "key": "",
-        "ca": "${MQTT_CA_CERT}",
+        "ca": "/mosquitto/certs/mqtt_ca.crt",
         "certname": "",
         "keyname": "",
         "caname": "",
-        "servername": "${MQTT_HOST}",
+        "servername": "mqttBroker",
         "verifyservercert": true
     },
     {
@@ -152,7 +152,7 @@
         "wires": []
     },
     {
-        "id": "8381a5c3.3cbf9",
+        "id": "c92d6e02.3f0e9",
         "type": "mqtt in",
         "z": "3af82246.3634ae",
         "name": "",
@@ -160,16 +160,16 @@
         "qos": "2",
         "datatype": "json",
         "broker": "d2a17e7.00b668",
-        "x": 170,
+        "x": 150,
         "y": 480,
         "wires": [
             [
-                "ebab6856.8901c"
+                "3bda8c88.2034e4"
             ]
         ]
     },
     {
-        "id": "ebab6856.8901c",
+        "id": "3bda8c88.2034e4",
         "type": "debug",
         "z": "3af82246.3634ae",
         "name": "",
@@ -179,12 +179,12 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 490,
+        "x": 470,
         "y": 480,
         "wires": []
     },
     {
-        "id": "92d9d4a9.e5cf4",
+        "id": "12426fc2.59a5f",
         "type": "inject",
         "z": "3af82246.3634ae",
         "name": "",
@@ -195,16 +195,16 @@
         "topic": "",
         "payload": "",
         "payloadType": "str",
-        "x": 190,
+        "x": 170,
         "y": 360,
         "wires": [
             [
-                "fb7b0c12.eb2e48"
+                "fc7aa4d.aef3d58"
             ]
         ]
     },
     {
-        "id": "fb7b0c12.eb2e48",
+        "id": "fc7aa4d.aef3d58",
         "type": "change",
         "z": "3af82246.3634ae",
         "name": "",
@@ -222,16 +222,16 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 340,
+        "x": 320,
         "y": 380,
         "wires": [
             [
-                "d356084b.b81818"
+                "7ebe04c6.f8e10c"
             ]
         ]
     },
     {
-        "id": "d356084b.b81818",
+        "id": "7ebe04c6.f8e10c",
         "type": "mqtt out",
         "z": "3af82246.3634ae",
         "name": "",
@@ -239,7 +239,7 @@
         "qos": "",
         "retain": "",
         "broker": "d2a17e7.00b668",
-        "x": 490,
+        "x": 470,
         "y": 400,
         "wires": []
     }
