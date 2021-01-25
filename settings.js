@@ -115,7 +115,12 @@ module.exports = {
 
     // If you installed the optional node-red-dashboard you can set it's path
     // relative to httpRoot
-    ui: { path: "ui" },
+    ui: { path: "ui" , middleware: function (req, res, next) {
+                // Do something more interesting here.
+                console.log('LOGGED')
+                next()
+            }
+        },
 
     // Securing Node-RED
     // -----------------
