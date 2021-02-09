@@ -7,11 +7,9 @@
         "info": ""
     },
     {
-        "id": "b6676317.388cb",
+        "id": "39bb936b.c6446c",
         "type": "tab",
-        "label": "Flow 2",
-        "disabled": true,
-        "info": ""
+        "label": "IGSS OPC UA Tests"
     },
     {
         "id": "d2a17e7.00b668",
@@ -210,6 +208,56 @@
         "collapse": false
     },
     {
+        "id": "b344a13a.f7751",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://smuc11427:11878",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "808bbc5f.40e07",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://10.11.11.138:51210",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "1d78cef.9b1a131",
+        "type": "OpcUa-Endpoint",
+        "d": true,
+        "endpoint": "opc.tcp://10.11.11.138:51210",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "6d0ca2d1.fab54c",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://localhost:12403/IGSS/IGSSOpcUaServer",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "5fd38566.087ccc",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://127.0.0.1:49320/KEPServerEX",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "e559ec21.ba273",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://10.11.11.137:52210",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
         "id": "55dd0376.f7c64c",
         "type": "http in",
         "z": "3af82246.3634ae",
@@ -358,7 +406,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "10",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -496,5 +544,175 @@
         "x": 330,
         "y": 460,
         "wires": []
+    },
+    {
+        "id": "6cd93d98.9326c4",
+        "type": "inject",
+        "z": "39bb936b.c6446c",
+        "name": "Test",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "ns=0;i=11492",
+        "payload": "",
+        "payloadType": "str",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "22b737b4.dd48c8",
+        "type": "debug",
+        "z": "39bb936b.c6446c",
+        "name": "Browse",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5e038a81.a1fc74",
+        "type": "template",
+        "z": "39bb936b.c6446c",
+        "name": "OpcUaItem",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "[{\"id\":\"4b12ca9b.e7e184\",\"type\":\"OpcUaItem\",\"item\":\"{{topic}}\",\"datatype\":\"opcua.DataType.Double\",\"value\":\"\",\"name\":\"{{browseName}}\",\"x\":251,\"y\":334,\"z\":\"30ffd2ee.59fdd6\",\"wires\":[[\"70dd1397.3c8e44\"]]}]",
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "22b737b4.dd48c8"
+            ]
+        ]
+    },
+    {
+        "id": "a190a47c.5c3a98",
+        "type": "OpcUa-Client",
+        "z": "39bb936b.c6446c",
+        "endpoint": "e559ec21.ba273",
+        "action": "browse",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "C:\\Users\\q513192\\NRdata\\node_modules\\node-opcua-client\\certificates\\client_selfsigned_cert_1024.pem",
+        "localkeyfile": "C:\\Users\\q513192\\NRdata\\node_modules\\node-opcua-client\\certificates\\PKI\\own\\private\\privat_key.pem",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "Browse",
+        "x": 280,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d516550.871488",
+        "type": "OpcUa-Client",
+        "z": "39bb936b.c6446c",
+        "endpoint": "e559ec21.ba273",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "733dacbb.baecb4"
+            ]
+        ]
+    },
+    {
+        "id": "9bb4e19.12ed32",
+        "type": "OpcUa-Item",
+        "z": "39bb936b.c6446c",
+        "item": "ns=0;i=2258",
+        "datatype": "DateTime",
+        "value": "",
+        "name": "Subscribe",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "8d516550.871488"
+            ]
+        ]
+    },
+    {
+        "id": "733dacbb.baecb4",
+        "type": "debug",
+        "z": "39bb936b.c6446c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "dbc20858.dbdfb8",
+        "type": "inject",
+        "z": "39bb936b.c6446c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=0;s=2258",
+        "payload": "subscribe",
+        "payloadType": "msg",
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "9bb4e19.12ed32"
+            ]
+        ]
     }
 ]

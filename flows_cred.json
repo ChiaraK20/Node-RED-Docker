@@ -3,5 +3,14 @@
         "user": "${MQTT_USER}",
         "password": "${MQTT_PWD}"
     },
-    "9ec473ef.e0678": {}
+    "9ec473ef.e0678": {},
+    "b344a13a.f7751": {
+        "user": "q513192",
+        "password": "Passw0rtfuer*8MWNo2020"
+    },
+    "808bbc5f.40e07": {},
+    "1d78cef.9b1a131": {},
+    "6d0ca2d1.fab54c": {},
+    "5fd38566.087ccc": {},
+    "e559ec21.ba273": {}
 }
