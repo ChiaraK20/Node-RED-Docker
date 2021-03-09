@@ -12,6 +12,13 @@
         "label": "IGSS OPC UA Tests"
     },
     {
+        "id": "52c1e2d9.6d0b2c",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "d2a17e7.00b668",
         "type": "mqtt-broker",
         "name": "myBrokerConfig",
@@ -210,7 +217,7 @@
     {
         "id": "b344a13a.f7751",
         "type": "OpcUa-Endpoint",
-        "endpoint": "opc.tcp://smuc11427:11878",
+        "endpoint": "opc.tcp://localhost:4897/Softing/dataFEED/Server",
         "secpol": "None",
         "secmode": "None",
         "login": false
@@ -253,6 +260,14 @@
         "id": "e559ec21.ba273",
         "type": "OpcUa-Endpoint",
         "endpoint": "opc.tcp://10.11.11.137:52210",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "23fbd103.55929e",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "",
         "secpol": "None",
         "secmode": "None",
         "login": false
@@ -645,7 +660,7 @@
         "securitymode": "None",
         "securitypolicy": "None",
         "name": "",
-        "x": 300,
+        "x": 280,
         "y": 400,
         "wires": [
             [
@@ -712,6 +727,177 @@
         "wires": [
             [
                 "9bb4e19.12ed32"
+            ]
+        ]
+    },
+    {
+        "id": "7f42b1f1.92ed6",
+        "type": "OpcUa-Client",
+        "z": "52c1e2d9.6d0b2c",
+        "endpoint": "e559ec21.ba273",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "a717a956.d40478"
+            ]
+        ]
+    },
+    {
+        "id": "736890be.6442",
+        "type": "OpcUa-Item",
+        "z": "52c1e2d9.6d0b2c",
+        "item": "ns=0;i=2258",
+        "datatype": "DateTime",
+        "value": "",
+        "name": "Subscribe",
+        "x": 260,
+        "y": 80,
+        "wires": [
+            [
+                "7f42b1f1.92ed6"
+            ]
+        ]
+    },
+    {
+        "id": "a717a956.d40478",
+        "type": "debug",
+        "z": "52c1e2d9.6d0b2c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ab5342fe.accec",
+        "type": "inject",
+        "z": "52c1e2d9.6d0b2c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ns=0;s=2258",
+        "payload": "subscribe",
+        "payloadType": "msg",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "736890be.6442"
+            ]
+        ]
+    },
+    {
+        "id": "e21d5ddc.1c1f5",
+        "type": "OpcUa-Client",
+        "z": "52c1e2d9.6d0b2c",
+        "endpoint": "e559ec21.ba273",
+        "action": "read",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "name": "",
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "a91f841b.8dd098"
+            ]
+        ]
+    },
+    {
+        "id": "17450d17.2923d3",
+        "type": "OpcUa-Item",
+        "z": "52c1e2d9.6d0b2c",
+        "item": "ns=2",
+        "datatype": "Int32",
+        "value": "",
+        "name": "",
+        "x": 200,
+        "y": 460,
+        "wires": [
+            [
+                "e21d5ddc.1c1f5"
+            ]
+        ]
+    },
+    {
+        "id": "a91f841b.8dd098",
+        "type": "debug",
+        "z": "52c1e2d9.6d0b2c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2b6258e6.751438",
+        "type": "inject",
+        "z": "52c1e2d9.6d0b2c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 340,
+        "wires": [
+            [
+                "17450d17.2923d3"
             ]
         ]
     }
